@@ -1,3 +1,14 @@
+/**
+ * Pad.java
+ *    Opens pad files for Program11 or quits if they are invalid.
+ *    Methods: - hasNext
+ *             - next
+ *             - reset
+ * 
+ * @author Carmen St. Jean
+ *         CS 415 - Spring 2008, April 22, 2008
+ */
+
 //----------------------- imports ----------------------------------------------
 import wheelsunh.users.*;
 import java.awt.Color;
@@ -13,6 +24,11 @@ public class Pad
    //---------------------------------------------------------------------------
    //------------------------- constructor -------------------------------------
    
+   /**
+    * Pad(String padName)
+    *    This constructor uses the pad name given to try to open the pad file
+    *    or quit if this file does not exist.
+    */
    public Pad(String padName) throws Exception
    {
       padFileName = padName;
@@ -22,15 +38,18 @@ public class Pad
       }
       catch(FileNotFoundException e)
       {
-         System.out.println("Pad file not found.  " +
-                            "Please enter a valid pad file name.");
-         scanIn = new Scanner(new File(padName));
+         System.out.println("Pad file not found. Goodbye.");
+         System.exit(0);
       }
    }
    
    //---------------------------------------------------------------------------
    //------------------------- accessors ---------------------------------------
 
+   /**
+     * boolean hasNext()
+     *    Checks to see if there is an next integer to the pad file.
+     */
    public boolean hasNext()
    {
       return scanIn.hasNext();
@@ -40,6 +59,10 @@ public class Pad
    //---------------------------------------------------------------------------
    //------------------------- mutators ----------------------------------------
 
+   /**
+    * void reset()
+    *    Resets the scanner to scan at the beginning of the pad file.
+    */
    public void reset() throws Exception
    {
       scanIn = new Scanner(new File(padFileName));
@@ -47,6 +70,10 @@ public class Pad
 
    //---------------------------------------------------------------------------
    
+   /**
+    * int next()
+    *    Returns the next integer of the pad file.
+    */
    public int next()
    {
       return scanIn.nextInt();
